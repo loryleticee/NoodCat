@@ -3,12 +3,17 @@ namespace App;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use DotEnv;
 
 require_once "vendor/autoload.php";
 require_once 'dotenv.php';
 
 (new DotEnv())->load();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f7a44a476d49e6240cd189150f594dd58f8f3464
 // Create a simple "default" Doctrine ORM configuration for Annotations
 $isDevMode = true;
 $proxyDir = __DIR__."/src/Proxies";
@@ -23,10 +28,10 @@ $config->setAutoGenerateProxyClasses(1);
 // database configuration parameters
 $conn = array(
     'driver' => 'pdo_mysql',
-    'user'     => getenv($APP_USER),
-    'password' => getenv($APP_PASS),
-    'dbname'   => getenv($APP_BDD),
-    'host'     => getenv($APP_HOST)
+    'user'     => getenv('APP_USER'),
+    'password' => getenv('APP_PASS'),
+    'dbname'   => getenv('APP_BDD'),
+    'host'     => getenv('APP_HOST')
 );
 
 // obtaining the entity manager
