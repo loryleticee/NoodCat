@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use App\Entity\Customer;
+use App\Helpers\EntityManagerHelper as Em;
 
 class CustomerControllers
 {
@@ -32,7 +33,7 @@ class CustomerControllers
         $em = self::getEM();
 
         if (empty($_POST)) {
-            include(__DIR__ . "/../Vues/PayMaster/AddPayMaster.php");
+            include(__DIR__ . "/../Vues/PayMaster/CustomerAdd.php");
             die();
         }
 
@@ -52,6 +53,7 @@ class CustomerControllers
             }
         }
 
+        $em = Em::getEntityManager();
         $CustomerLastName = $_POST["lastname"];
         $CustomerFirstName = $_POST["firstname"];
         $CustomerAge = $_POST["age"];

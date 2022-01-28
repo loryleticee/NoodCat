@@ -1,9 +1,3 @@
-<?php
-session_start();
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,20 +28,8 @@ session_start();
 </head>
 
 <body>
-    <div>
-        <?php
-        if (array_key_exists("error", $_SESSION)) {
-            echo $_SESSION["error"];
-            unset($_SESSION["error"]);
-        } ?>
-    </div>
-
-
-
-    <form action="/CatBar" method="POST" id="form_controller">
-        <label for="id">Id: </label>
-        <input type="int" name="id" id="id" class="radius">
-
+  
+    <form action="/NoodCat/CatBarA" method="POST" id="form_controller">
         <label for="name_bar">Name bar </label>
         <input type="text" name="name_bar" id="name_bar" class="radius">
 

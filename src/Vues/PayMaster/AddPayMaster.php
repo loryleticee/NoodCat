@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<form method="POST" action="/PaymasterA">
+<form method="POST" action="/NoodCat/PaymasterA">
         <label for="email">EMAIL:</label>
         <input name="email" type="email" required />
 
