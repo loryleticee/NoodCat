@@ -29,10 +29,10 @@ class Reservation
     private Cat $cat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Table")
+     * @ORM\ManyToOne(targetEntity="TableReserv")
      * @ORM\JoinColumn(name="table_id", referencedColumnName="id")
      */
-    private Table $table;
+    private TableReserv $table;
 
     /**
      * @ORM\ManyToOne(targetEntity="Customer")

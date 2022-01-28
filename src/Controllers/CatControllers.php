@@ -5,7 +5,7 @@ namespace App\Controllers;
 session_start();
 
 use App\Entity\Cat;
-use App\Helpers\EntityHelpers as EH;
+use App\Entity\EntityHelpers as EH;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
