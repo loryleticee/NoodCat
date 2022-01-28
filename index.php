@@ -2,10 +2,26 @@
 
 namespace App;
 
-use Router\Router\Router;
+use Router\Router;
 
 require_once("vendor/autoload.php");
 
+//if (!empty($_SESSION['type'])) {
+//    $_SESSION['type'] = "";
+// }
+// switch ($_SESSION['type']) {
+//    case 'User':
+//       $router->get("/", "App\Controllers\.........."); //     /!\ à modifier
+//       break;
+// 
+//    case 'Customer':
+//       break;
+
+//    case 'PayMaster':
+//       break;
+// 
+//    default:
+ 
 
 $router = new Router($_GET['url']);
 
@@ -76,5 +92,7 @@ $router->get("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
+
+//break;
 
 $router->run();
