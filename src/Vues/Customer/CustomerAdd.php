@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<form method="POST" action="/CustomerA">
+<form method="POST" action="/NoodCat/CustomerA">
         <label for="email">EMAIL:</label>
         <input name="email" type="email" required />
 

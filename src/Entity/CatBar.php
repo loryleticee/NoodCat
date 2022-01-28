@@ -27,9 +27,8 @@ class CatBar
      */
     private string $location;
 
-    public function __construct(int $id, string $name_bar, string $location)
+    public function __construct(string $name_bar, string $location)
     {
-        $this->id = $id;
         $this->name_bar = $name_bar;
         $this->location = $location;
     }

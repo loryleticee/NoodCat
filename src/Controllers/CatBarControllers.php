@@ -5,55 +5,52 @@ namespace App\Controllers;
 session_start();
 
 use App\Entity\CatBar;
-use App\Helpers\EntityHelpers as EH;
+use App\Helpers\EntityManagerHelper as Em;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 
 class CatBarControllers
 {
-
-    const NEEDS = [
-        "id",
-        "name_bar",
-        "location"
-    ];
-
     public function showAll()
     {
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = Em::getEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\CatBar"));
         $CatBar = $repository->findAll();
-        print $CatBar; //je suis pas sur que cela soit juste!!
+        print $CatBar; 
     }
+
 
     public function add()
     {
-        foreach (self::NEEDS as $value) {
-            if (!empty($_POST)) {
+
+        if (isset($_POST['name_bar'], $_POST['location'])) 
+        {
+            $name_bar = $_POST['name_bar'];
+            $location = $_POST['location'];
+        }else
+            throw new \Exception("Error Processing Request");
+        
+            $entityManager = Em::getEntityManager();
+            $cat = new CatBar($name_bar, $location);
+            $entityManager->persist($cat);
+
+        try {
+            $entityManager->flush();
+        } catch (\Throwable $th) {
+            exit("Error Processing Request");
             }
-            if (!array_key_exists($value, $_POST)) {
-                $_SESSION["error"] = "Il manque des champs à remplir";
+    }
 
-                include __DIR__ . "/../Vues/CatBar/AddCatBar.php";
-                die();
-            }
-            $_POST[$value] = htmlentities(strip_tags($_POST[$value]));
-        }
 
-        $CatBar = new CatBar((int) $_POST["id"], $_POST["name_bar"], $_POST["location"]);
-
-        $entityManager = EH::getRequireEntityManager();
-        $entityManager->persist($CatBar);
-        $entityManager->flush();
-
+    public function showForm()
+    {
         include __DIR__ . "/../Vues/CatBar/AddCatBar.php";
-        die();
     }
 
     public function modify(string $sId)
     {
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = Em::getEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\Cat"));
 
         $catBar = $repository->find((int)$sId);
@@ -92,7 +89,7 @@ class CatBarControllers
 
     public function delete(string $sId)
     { 
-            $entityManager = EH::getRequireEntityManager();
+            $entityManager = Em::getEntityManager();
             $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\DeleteCatBar"));
 
             $catBar = $repository->find($sId);
@@ -103,4 +100,4 @@ class CatBarControllers
             echo "Data well delete";
         }
     
-    }
+}

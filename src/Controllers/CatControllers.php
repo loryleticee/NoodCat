@@ -5,7 +5,7 @@ namespace App\Controllers;
 session_start();
 
 use App\Entity\Cat;
-use App\Helpers\EntityHelpers as EH;
+use App\Helpers\EntityManagerHelper as EH;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
@@ -20,7 +20,7 @@ class CatControllers
 
     public function showAll()
     {
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = EH::getEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\Cat"));
         $aCat = $repository->findAll();
         print $aCat; //je suis pas sur que cela soit juste!!
@@ -42,7 +42,7 @@ class CatControllers
 
         $Cat = new Cat((int) $_POST["id"], $_POST["name_bar"], $_POST["location"]);
 
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = EH::getEntityManager();
         $entityManager->persist($Cat);
         $entityManager->flush();
 
@@ -52,7 +52,7 @@ class CatControllers
 
     public function modify(string $sId)
     {
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = EH::getEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\Cat"));
 
         $cat = $repository->find((int)$sId);
@@ -92,7 +92,7 @@ class CatControllers
     public function delete(string $sId)
     {
 
-        $entityManager = EH::getRequireEntityManager();
+        $entityManager = EH::getEntityManager();
         $repository = new EntityRepository($entityManager, new ClassMetadata("App\Entity\DeleteCat"));
 
         $cat = $repository->find($sId);
