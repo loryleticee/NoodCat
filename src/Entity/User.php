@@ -37,7 +37,7 @@ class User
 
 
 
-    public function __consruct(string $lastname, string $firstname, string $mail, string $password, int $age)
+    public function __construct(string $lastname, string $firstname, string $mail, string $password, int $age)
     {
         $this->lastname = $lastname;
         $this->firstname = $firstname;
