@@ -1,8 +1,8 @@
 <?php
 
-namespace Router\Router;
+namespace Router;
 
-use Router\Route\Route;
+use Router\Route;
 
 class Router{
 
@@ -13,7 +13,6 @@ class Router{
     {
         $this->url = trim($url, '/');
 
-        
     }
 
     public function get(string $path, string $action)
@@ -36,5 +35,10 @@ class Router{
                $route->execute();
            }
         }
+    }
+
+    public static function redirect(string $url) {
+        header("location: ". $_SERVER["REQUEST_SCHEME"]. "://". $_SERVER["HTTP_HOST"] .  "/" . $url);
+        exit();
     }
 }
