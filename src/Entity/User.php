@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string") 
  * @ORM\DiscriminatorMap({"Pdg" = "Pdg", "User" = "User", "Customer" = "Customer", "PayMaster" = "PayMaster"})
- * @ORM\Table(name="Member",uniqueConstraints={@ORM\UniqueConstraint(columns= {"mail"})})
+ * @ORM\Table(name="User",uniqueConstraints={@ORM\UniqueConstraint(columns= {"mail"})})
 */
 
-class User
+class User // pas de user 
 {
     /** 
      * @ORM\Id
@@ -35,11 +35,9 @@ class User
     /** @ORM\Column(type="smallint")*/
     private int $age;
 
-
-
+    //private int $idcatBar; a rajouter dans le construct
 
     public function __construct(string $lastname, string $firstname, string $mail, string $password, int $age)
-
     {
         $this->lastname = $lastname;
         $this->firstname = $firstname;
