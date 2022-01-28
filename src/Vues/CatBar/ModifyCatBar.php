@@ -44,7 +44,7 @@ session_start();
 
 
 
-    <form action="/CatBarM/:id" method="POST" id="form_controller">
+    <form action="<?="/CatBarM/:id"?> method="POST" id="form_controller">
         <label for="id">Id: </label>
         <input type="int" name="id" id="id" class="radius">
 
