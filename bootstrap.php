@@ -5,8 +5,11 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use DotEnv;
 
+
 require_once "vendor/autoload.php";
 require_once 'dotenv.php';
+(new DotEnv())->load();
+
 
 (new DotEnv())->load();
 
@@ -24,7 +27,6 @@ $config->setAutoGenerateProxyClasses(1);
 // or if you prefer yaml or XML
 // $config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
 // $config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
-
 // database configuration parameters
 $conn = array(
     'driver' => 'pdo_mysql',
