@@ -76,3 +76,5 @@ $router->get("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
 $router->post("/", "App\Controllers\AppControllers@login");
+
+$router->run();
