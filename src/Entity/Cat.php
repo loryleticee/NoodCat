@@ -30,11 +30,11 @@ class Cat
     /**
      * @ORM\Column(type="bigint")
      */
-    private string $chip_number;
+    private int $chip_number;
 
     /**
      * @ORM\ManyToOne(targetEntity="Bar")
-     * @ORM\JoinColumn(name="bar_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="bar_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
     */
     private Bar|null $bar;
 
@@ -43,7 +43,7 @@ class Cat
      */
     private int $status;
 
-    public function __construct(string $name, string $desc, string $chip_number, Bar $bar, int $status)
+    public function __construct(string $name, string $desc, int $chip_number, Bar $bar, int $status)
     {
         $this->name = $name;
         $this->description = $desc;
@@ -115,7 +115,7 @@ class Cat
      *
      * @return string
      */
-    public function getChipNumber(): string
+    public function getChipNumber(): int
     {
         return $this->chip_number;
     }
@@ -127,7 +127,7 @@ class Cat
      *
      * @return self
      */
-    public function setChipNumber(string $chip_number): self
+    public function setChipNumber(int $chip_number): self
     {
         $this->chip_number = $chip_number;
 

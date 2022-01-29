@@ -14,8 +14,8 @@ class Manager extends User
 {
     use NamesTrait;
 
-    /** @ORM\Column(type="bigint") */
-    private int $bank_funds = 0;
+    /** @ORM\Column(type="bigint", nullable=true) */
+    private int $bank_funds;
 
     /**
      * @var Collection<Bar>
@@ -23,7 +23,7 @@ class Manager extends User
     */
     private Collection $bars;
 
-    public function __construct(string $email, string $password, string $firstname, string $lastname, ?int $bank_funds)
+    public function __construct(string $email, string $password, string $firstname, string $lastname, ?int $bank_funds = 0)
     {
         parent::__construct($email, $password);
         $this->firstname = $firstname;

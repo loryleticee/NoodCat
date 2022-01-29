@@ -12,7 +12,7 @@ class Client extends User
 {
     use NamesTrait;
     
-    /** @ORM\Column(length=20) */
+    /** @ORM\Column(length=20, nullable=true) */
     private string $id_card = "NULL";
 
     public function __construct(string $email, string $password, ?string $id_card, ?string $firstname, ?string $lastname)

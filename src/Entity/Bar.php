@@ -49,7 +49,7 @@ class Bar
 
     /**
      * @ORM\ManyToOne(targetEntity="Manager")
-     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
     */
     private Manager|null $manager;
 
@@ -236,7 +236,7 @@ class Bar
 
     public function addCats(Cat $cat) : self
     {
-        if(!$this->cat->contains($cat)){
+        if(!$this->cats->contains($cat)){
             $this->cats[] = $cat;
             $cat->setBar($this);
         }

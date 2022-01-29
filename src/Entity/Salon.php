@@ -23,7 +23,7 @@ class Salon
 
     /**
      * @ORM\ManyToOne(targetEntity="Bar")
-     * @ORM\JoinColumn(name="bar_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="bar_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private Bar|null $bar;
 

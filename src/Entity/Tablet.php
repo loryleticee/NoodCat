@@ -21,7 +21,7 @@ class Tablet
 
     /**
      * @ORM\ManyToOne(targetEntity="Salon")
-     * @ORM\JoinColumn(name="salon_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="salon_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private Salon|null $salon;
 

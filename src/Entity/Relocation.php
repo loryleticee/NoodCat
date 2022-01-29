@@ -22,19 +22,19 @@ class Relocation
 
     /**
      * @ORM\ManyToOne(targetEntity="Cat")
-     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="cat_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private Cat|null $cat;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cashier")
-     * @ORM\JoinColumn(name="cashier_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="cashier_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private Cashier|null $cashier;
 
     /**
      * @ORM\ManyToOne(targetEntity="TransportCompany")
-     * @ORM\JoinColumn(name="transport_company_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="transport_company_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private TransportCompany|null $transport_compagnie;
 
