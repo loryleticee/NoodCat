@@ -46,7 +46,9 @@ final class AppController extends AbstractController
             $em = EntityManagerHelper::getEntityManager();
             $repo = new EntityRepository($em, new ClassMetadata("App\Entity\User"));
             $aUser = $repo->findBy(["email" => $_POST["login"]]);
-           
+            if(empty($aUser)) {
+                exit("vous n'etes pas connu");
+            }
             $this->comparePassword($aUser[0]->getPassword(), $_POST["password"], $aUser[0]);
             
             Router::redirect('cats');
@@ -90,4 +92,67 @@ final class AppController extends AbstractController
         Router::redirect('');
     }
 
+    public function addFake()
+    {
+        $em = EntityManagerHelper::getEntityManager();
+        // $manager = new Manager("loryleticee@gmail.com", "lory", "Lory", "LETICEE");
+
+        // $bar = new Bar("CatLand", "2 rue Philibert 54000 NANCY", $manager);
+        // $bar1 = new Bar("StoryCat", "43 avenue Durant 75000 PARIS", $manager);
+
+        // $manager->addBar($bar);
+        // $manager->addBar($bar1);
+
+        // $em->persist($manager);
+        // $em->persist($bar);           
+        // $em->persist($bar1);
+
+        // try {
+        //     $em->flush();
+        // } catch (\Throwable $th) {
+        //     exit("Be careful , you are trying to insert a data alreday present in the database.");
+        // }
+        
+        $repo = new EntityRepository($em, new ClassMetadata("App\Entity\Bar"));
+        $bar = $repo->find(2);
+
+       
+        $cat2 = new Cat("Jules", "Chat noir Français", 06545667, $bar, 1);
+        $em->persist($cat2);
+        $em->flush();
+        $cat3 = new Cat("Brew", "Chat rose des bois", 7463263544, $bar, 1);
+        $em->persist($cat3);
+        $em->flush();
+        $cat4 = new Cat("André", "Chat bleu de Tanzanie", 445564333, $bar, 1);
+        $em->persist($cat4);
+        $em->flush();
+        $cat5 = new Cat("Konan", "Chat gris Espagnole", 9996556566, $bar, 1);
+        $em->persist($cat5);
+        $em->flush();
+     
+
+        $bar->addCats($cat);
+        $bar->addCats($cat1);
+        $bar->addCats($cat2);
+        $bar->addCats($cat3);
+        $bar->addCats($cat4);
+        $bar->addCats($cat5);
+        
+        $em->persist($cat);
+        $em->persist($cat1);
+        $em->persist($cat2);
+        $em->persist($cat3);
+        $em->persist($cat4);
+        $em->persist($cat5);
+
+        // $em->persist($manager);
+        $em->persist($bar);           
+        // $em->persist($bar1);
+
+        try {
+            $em->flush();
+        } catch (\Throwable $th) {
+            exit("Be careful , you are trying to insert a data alreday present in the database.");
+        }
+    }
 }

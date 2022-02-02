@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Cat
 {
+    const AVAILABLE = 1;
+    const UNAVAILABLE = 2;
+    const TO_THE_VET = 3;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

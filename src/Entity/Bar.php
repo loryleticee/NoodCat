@@ -49,7 +49,7 @@ class Bar
 
     /**
      * @ORM\ManyToOne(targetEntity="Manager")
-     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="manager", referencedColumnName="id", nullable=true, onDelete="SET NULL")
     */
     private Manager|null $manager;
 
