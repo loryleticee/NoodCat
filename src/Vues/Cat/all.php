@@ -22,9 +22,9 @@ endif;
                     </thead>
                     <thead>
                         <tr class="table-dark text-light text-center">
-                            <th><i class="fas fa-cat"></i></th>
-                            <th>Description:</th>
-                            <th><i class="fas fa-fingerprint"></i></th>
+                            <th><i class="fas fa-cat text-info fa-2x"></i></th>
+                            <th><i class="far fa-comments text-light fa-2x"></i></th>
+                            <th><i class="fas fa-fingerprint text-warning fa-2x"></i></th>
                             <?php if ($_SESSION["Type"] === "manager") : ?>
                                 <th> Action </th>
                             <?php endif; ?>
@@ -33,12 +33,12 @@ endif;
                     <?php
                     foreach ($aCats[$bar->getId()] as $cat) : ?>
                         <tr>
-                            <td class="table-light">
+                            <td class="table-dark">
                                 <div class="alert alert-primary" role="alert">
                                     <?= $cat->getName() ?>
                                 </div>
                             </td>
-                            <td class="table-light">
+                            <td class="table-dark">
                                 <div class="alert alert-secondary" role="alert">
 
                                     <a class="text-decoration-none text-dark" data-bs-toggle="collapse" href='<?= "#chatCollapse" . $cat->getId() ?>' role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -52,7 +52,7 @@ endif;
                                     </div>
                                 </div>
                             </td>
-                            <td class="table-light">
+                            <td class="table-dark">
                                 <div class="alert alert-warning" role="alert">
                                     <?= $cat->getChipNumber() ?>
                                 </div>
@@ -87,10 +87,6 @@ endif;
     ?>
 </div>
 <script>
-    $(".edit").on("click", function(e) {
-        // window.location.href = "/cat/" + $(this).attr("data-id");
-    });
-
     $(".delete").on("click", function(e) {
         if (confirm("Êtes vous sur de vouloir supprimer " + $(this).attr("data-name"))) {
             window.location.href = "/removecat/" + $(this).attr("data-id");

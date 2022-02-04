@@ -32,17 +32,17 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">NoodCat</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon text-primary"></span>
+                    <span class="navbar-toggler-icon text-light"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/cats">Les chats</a>
+                            <a class="nav-link active" aria-current="page" href="/cats" data-route="/cats">Les chats</a>
                         </li>
                         <?php if (!empty($_SESSION["Type"])) : ?>
                             <?php if ($_SESSION["Type"] === "manager") : ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/cat">Ajouter un chat</a>
+                                    <a class="nav-link" href="/cat" data-route="/cat" >Ajouter un chat</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
@@ -70,4 +70,4 @@
         </nav>
 
     </header>
-    <div class="content">
+    <div class="content bg-dark">
