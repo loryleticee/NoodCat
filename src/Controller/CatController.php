@@ -6,6 +6,7 @@ use App\Entity\Cat;
 use App\Helpers\EntityManagerHelper;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Router\Router;
 
 final class CatController extends AbstractController
 {
@@ -28,10 +29,12 @@ final class CatController extends AbstractController
     public function index(): void
     {
         $em = EntityManagerHelper::getEntityManager();
-        $repo = new EntityRepository($em, new ClassMetadata("App\Entity\Cat"));
+        $catRepo = new EntityRepository($em, new ClassMetadata("App\Entity\Cat"));
         $barRepo = new EntityRepository($em, new ClassMetadata("App\Entity\Bar"));
-        $bar1 = $barRepo->findBy(["manager" => $_SESSION["id"]])[1];
-        $aCats = $repo->findBy(["bar" => $bar1->getId()]);
+        $aBar = $barRepo->findBy(["manager" => $_SESSION["id"]]);
+        foreach ($aBar as $b) {
+           $aCats[$b->getId()] = $catRepo->findBy(["bar" => $b->getId()]);
+        }
 
         include __DIR__ . "/../Vues/Cat/all.php";
     }
@@ -57,7 +60,12 @@ final class CatController extends AbstractController
             $cat = new Cat($_POST["name"], $_POST["description"], $chip_number, $bar, Cat::AVAILABLE);
 
             $em->persist($cat);
-            $em->flush();
+            try {
+                $em->flush();
+                Router::redirect("cats");
+            } catch (\Throwable $th) {
+                $error = "Ce chat existe déjà";
+            }
         }
 
         include(__DIR__ . "/../Vues/Cat/add.php");
@@ -86,7 +94,7 @@ final class CatController extends AbstractController
             if ( $_POST["name"] !== $cat->getName()) {
                 $cat->setName($_POST["name"]);
             }
-            if ( $_POST["description"] == $cat->getDescription()) {
+            if ( $_POST["description"] !== $cat->getDescription()) {
                 $cat->setDescription($_POST["description"]);
             }
             if ( $_POST["chipnumber"] !== $cat->getChipNumber()) {
@@ -103,6 +111,7 @@ final class CatController extends AbstractController
             try {
                 $em->flush();
                 $error = "Modifié avec succès";
+                Router::redirect("cats");
             } catch (\Throwable $th) {
                 $error = "une errue est survenue à la modification";
             }

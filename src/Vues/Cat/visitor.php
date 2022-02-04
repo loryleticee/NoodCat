@@ -1,4 +1,5 @@
 <?php
+
 include __DIR__ . "/../Heading/head.php";
 
 if (empty($aCats)) : ?>
@@ -7,27 +8,45 @@ if (empty($aCats)) : ?>
     </div>
 <?php
 endif;
-
-// foreach ($aCats as $bar) :
 ?>
-<div>
-    BAR : <?= $bar2->getSign(); ?>
-</div>
-<table style="height: 100vh;">
-    <th>Nom:</th>
-    <th>Description:</th>
-    <?php
-    foreach ($aCats as $cat) : ?>
-        <tr>
-            <td> <?= $cat->getName() ?> </td>
-            <td> <?= $cat->getDescription() ?> </td>
-            <td> <?= $cat->getChipNumber() ?> </td>
-        </tr>
-    <?php
-    endforeach;
-    ?>
-</table>
-<?php
-// endforeach;
+<div class="container-sm">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="table-dark text-light">
+                    <th>Nom:</th>
+                    <th>Description:</th>
+                </tr>
+            </thead>
+            <?php
+            foreach ($aCats as $cat) : ?>
+                <tr>
+                    <td class="table-light">
+                        <div class="alert alert-primary" role="alert">
+                            <?= $cat->getName() ?>
+                        </div>
+                    </td>
+                    <td class="table-light">
+                        <div class="alert alert-secondary" role="alert">
 
-include __DIR__ . "/../Heading/footer.php";
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href='<?= "#chatCollapse" . $cat->getId() ?>' role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <?php echo substr($cat->getDescription(), 0, 30) . (strlen($cat->getDescription()) > 30 ? "..." : ""); ?>
+                            </a>
+
+                            <div class="collapse" id='<?= "chatCollapse" . $cat->getId() ?>'>
+                                <div class="card card-body">
+                                    <?= $cat->getDescription(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            <?php
+            endforeach;
+            ?>
+        </table>
+    </div>
+
+</div>
+<?php include __DIR__ . "/../Heading/footer.php";

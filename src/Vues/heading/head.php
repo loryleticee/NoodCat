@@ -8,6 +8,7 @@
     <meta name="description" content="Mon site e-commerce de vente de chaussure">
     <meta name="keywords" content="chaussure, e-commerce, vente, chausette">
     <meta name="author" content="Lory LÉTICÉE">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>
@@ -27,75 +28,46 @@
 
 <body>
     <header>
-        <h1 id="title">NoodCat</h1>
-        <nav id="nav">
-            <a href="/cats" title="Voir les chats"><i class="far fa-newspaper fa-2x"></i></a>
-            <?php if (isset($_SESSION['id'])) : ?>
-                <a href="/cat" title="Ajouter un chat"><i class="fas fa-plus fa-2x"></i></a>
-            <?php endif ?>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">NoodCat</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/cats">Les chats</a>
+                        </li>
+                        <?php if (!empty($_SESSION["Type"])) : ?>
+                            <?php if ($_SESSION["Type"] === "manager") : ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/cat">Ajouter un chat</a>
+                                </li>
 
-            <?php if (!isset($_SESSION['id'])) : ?>
-                <a href="/" title="S'inscrire"><i class="fas fa-user-lock fa-2x"></i></a>
-            <?php endif ?>
-
-            <?php if (isset($_SESSION['id'])) : ?>
-                <a href="/logout" title="Se déconnecter"><i class="fas fa-sign-out-alt fa-2x"></i></a>
-                <span class="pseudo-blue"><?= $_SESSION['Type'] ?></span>
-            <?php endif ?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-user-shield"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                                        <li><a class="dropdown-item" href="#">Mes ventes</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="/logout">Se deconnecter</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </nav>
 
-        <nav id="nav-mobile">
-            <div class="menu-btn" title="Menu">
-                <div class="menu-btn__burger"></div>
-            </div>
-            <div id="nav-mobile_item">
-                <ul>
-                    <li><a href=""><i class="far fa-newspaper fa-2x"></i></a></li>
-                    <?php if (isset($_SESSION['id'])) : ?>
-                        <li><a href="/cat" title="Ajouter un chat"><i class="fas fa-plus fa-2x"></i></a></li>
-                    <?php endif ?>
-
-                    <?php if (!isset($_SESSION['id'])) : ?>
-                        <li><a href="">&nbsp;</a></li>
-                        <li><a href="/" title="S'inscrire"><i class="fas fa-user-lock fa-2x"></i></a></li>
-                    <?php endif ?>
-                    <li><a href="">&nbsp;</a></li>
-                    <?php if (isset($_SESSION['id'])) : ?>
-                        <li><a href="/logout" title="Se déconnecter"><i class="fas fa-sign-out-alt fa-2x"></i></a> &nbsp;&nbsp; <span class="pseudo-blue"><?= $_SESSION['Type'] ?></span></li>
-
-                    <?php endif ?>
-                </ul>
-            </div>
-        </nav>
     </header>
-
-    <script>
-        const menuBtn = document.querySelector('.menu-btn');
-        const navMobile = document.querySelector('#nav-mobile_item');
-        let menuOpen = false;
-        menuBtn.addEventListener('click', () => {
-            if (!menuOpen) {
-                openBurger()
-            } else {
-                closeBurger()
-            }
-        })
-
-        function openBurger() {
-            menuBtn.classList.add('open');
-            navMobile.classList.add('open');
-            menuOpen = true;
-        }
-
-        function closeBurger() {
-            menuBtn.classList.remove('open');
-            navMobile.classList.remove('open');
-            menuOpen = false;
-        }
-
-        document.addEventListener('click', (e) => {
-            if (e.target.classList[0] !== "menu-btn" && e.target.classList[0] !== "open" && e.target.classList[0] !== "menu-btn__burger") {
-                closeBurger();
-            }
-        });
-    </script>
+    <div class="content">
