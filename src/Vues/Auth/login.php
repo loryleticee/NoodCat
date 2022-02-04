@@ -14,7 +14,7 @@ include __DIR__ . "/../Heading/head.php";
         </div>
         <div>
             <span class="d-flex flex-end flex-column align-items-center mt-5">
-                <i class="text-info fas fa-cat fa-4x"></i>
+                <i class="text-info fas fa-cat fa-5x"></i>
             </span>
         </div>
         <form action="/" method="POST" id="form_controller">

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Bar;
+use App\Entity\Cashier;
 use App\Entity\Cat;
 use App\Entity\Manager;
+use App\Entity\TransportCompany;
 use App\Helpers\EntityManagerHelper;
+use DateTime;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Router\Router;
@@ -90,5 +93,32 @@ final class AppController extends AbstractController
         session_unset();
         session_destroy();
         Router::redirect('');
+    }
+
+    public function addFake()
+    {
+        $em = EntityManagerHelper::getEntityManager();
+        $company = new TransportCompany("UPS");
+        $company1 = new TransportCompany("CHRONOPOST");
+        $company2 = new TransportCompany("FEDEX");
+        $company3 = new TransportCompany("DHL");
+
+        $barRepo = new EntityRepository($em, new ClassMetadata("App\Entity\Bar"));
+        $bar2 = $barRepo->find(2);
+        $bar1 = $barRepo->find(1);
+
+        $cashier = new Cashier("BLOND", "Hernesto", "hernesto@blond.fr", "hernesto", new DateTime(), $bar2, '');
+        $cashier2 = new Cashier("LEGACY", "Jasmine", "jasmine@legacy.fr", "jasmine", new DateTime(), $bar1, '');
+        $cashier3 = new Cashier("MOLOIT", "fred", "fred@moloit.fr", "fred", new DateTime(), $bar2, '');
+
+        $em->persist($company);
+        $em->persist($company1);
+        $em->persist($company2);
+        $em->persist($company3);
+        
+        $em->persist($cashier);
+        $em->persist($cashier2);
+        $em->persist($cashier3);
+        $em->flush();
     }
 }

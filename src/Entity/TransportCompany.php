@@ -16,8 +16,8 @@ class TransportCompany
      */
     private int $id;
 
+    /** @ORM\Column(length=30) */
     private string $company_name;
-
 
     public function __construct(string $company_name)
     {

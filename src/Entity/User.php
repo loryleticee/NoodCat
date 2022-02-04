@@ -22,8 +22,7 @@ abstract class User
 
     /**
      * @ORM\Column(length="100")
-     */
-
+    */
     private string $email;
 
     /**

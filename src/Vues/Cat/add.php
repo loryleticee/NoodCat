@@ -33,7 +33,7 @@ include __DIR__ . "/../Heading/head.php"; ?>
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text bg-success border-success text-light">Bar</span>
+            <span class="input-group-text bg-success border-success text-light"><i class="fas fa-glass-martini-alt"></i></span>
             <select name="bar" id="bar" class="form-select border-success text-success">
                 <?php foreach ($aBar as $bar) : ?>
                     <option value="<?= $bar->getId() ?>"><?= $bar->getSign() ?></option>

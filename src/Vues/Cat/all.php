@@ -60,13 +60,15 @@ endif;
 
                             <?php if ($_SESSION["Type"] === "manager") : ?>
                                 <td>
-                                    <div class="row">
-                                        <div class="btn-group gap-3" role="group" aria-label="First group">
-                                            <div class="col btn btn-info edit" data-id="<?= $cat->getId(); ?>" data-bs-toggle="modal" data-bs-target='<?= "#chat" . $cat->getId() ?>'>
-                                                <i class="far fa-edit"></i>
-                                            </div>
-                                            <div class="col btn btn-danger delete" data-id="<?= $cat->getId(); ?>" data-name="<?= $cat->getName(); ?>">
-                                                <i class="far fa-trash-alt"></i>
+                                    <div class="d-flex align-items-center">
+                                        <div class="row">
+                                            <div class="btn-group gap-3" role="group" aria-label="First group">
+                                                <div class="col btn btn-info edit" data-id="<?= $cat->getId(); ?>" data-bs-toggle="modal" data-bs-target='<?= "#chat" . $cat->getId() ?>'>
+                                                    <i class="far fa-edit"></i>
+                                                </div>
+                                                <div class="col btn btn-danger delete" data-id="<?= $cat->getId(); ?>" data-name="<?= $cat->getName(); ?>">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

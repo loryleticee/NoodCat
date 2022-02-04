@@ -9,11 +9,27 @@
             $(element).find(".nav-link").removeClass("active")
         }
 
-        if(uri === $(element).find(".nav-link").attr("data-route")) {
+        if (uri === $(element).find(".nav-link").attr("data-route")) {
             $(element).find(".nav-link").addClass("active")
         }
     })
 
+    $(".transport-type").each(function(i, element) {
+        $(element).on("click", ()=>{
+            hideTransportType();
+        })
+    })
+
+    function hideTransportType() {
+        $('.transport-type').each(function(i, element) {
+            if ($(element).is(":checked")) {
+                console.log($(element).attr("data-transport_type"))
+                $('.' + $(element).attr("data-transport_type")).removeClass("visually-hidden")
+            } else {
+                $('.' + $(element).attr("data-transport_type")).addClass("visually-hidden")
+            }
+        })
+    }
 </script>
 </body>
 

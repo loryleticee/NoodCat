@@ -30,6 +30,12 @@ switch ($_SESSION['Type']) {
         $router->get("/cat/:id", "App\Controller\CatController@modify");
         $router->post("/cat/:id", "App\Controller\CatController@modify");
         $router->get("/removecat/:id", "App\Controller\CatController@delete");
+
+        $router->get("/relocations", "App\Controller\RelocationController@index");
+        $router->get("/relocation", "App\Controller\RelocationController@add");
+        $router->post("/relocation", "App\Controller\RelocationController@add");
+        
+        // $router->get("/fake", "App\Controller\AppController@addFake");
         break;
     default:
         $router->get("/", "App\Controller\AppController@login");
