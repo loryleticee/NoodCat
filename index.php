@@ -7,19 +7,21 @@ session_start();
 require_once('vendor/autoload.php');
 
 use Router\Router;
+
 $router = new Router($_GET['url']);
 
-if(!isset($_SESSION['Type'])) {
-    $_SESSION['Type'] = null;  
+if (!isset($_SESSION['Type'])) {
+    $_SESSION['Type'] = null;
 }
 
 switch ($_SESSION['Type']) {
     case 'client':
         $router->get("/home", "App\Controller\AppController@index");
         $router->get("/cats", "App\Controller\CatController@index");
+        $router->get("/404", "App\Controller\AppController@error404");
         $router->get("/logout", "App\Controller\AppController@logout"); //
         break;
-        
+
     case 'manager':
         $router->get("/logout", "App\Controller\AppController@logout");
         $router->get("/", "App\Controller\AppController@index");
@@ -34,16 +36,18 @@ switch ($_SESSION['Type']) {
         $router->get("/relocations", "App\Controller\RelocationController@index");
         $router->get("/relocation", "App\Controller\RelocationController@add");
         $router->post("/relocation", "App\Controller\RelocationController@add");
-        
+        $router->get("/404", "App\Controller\AppController@error404");
+
         // $router->get("/fake", "App\Controller\AppController@addFake");
         break;
     default:
         $router->get("/", "App\Controller\AppController@login");
         $router->post("/", "App\Controller\AppController@login");
-    
+
         $router->get("/cats", "App\Controller\CatController@visitor");
         $router->get("/lahaine", "App\Controller\AppController@addFake");
         $router->get("/logout", "App\Controller\AppController@logout"); //
+        $router->get("/404", "App\Controller\AppController@error404");
         break;
 }
 
