@@ -58,14 +58,14 @@ include __DIR__ . "/../Heading/head.php"; ?>
             <div class="form-check">
                 <input class="form-check-input transport-type" type="radio" data-transport_type="cashier" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                 <label class="form-check-label" for="exampleRadios1">
-                <span class="input-group-text bg-secondary border-secondary text-light"> <i class="fas fa-users"></i></span>
+                <span class="input-group-text bg-secondary border-light text-light"> <i class="fas fa-users"></i></span>
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input transport-type" type="radio" data-transport_type="transportCompany" name="exampleRadios" id="exampleRadios2" value="option2">
                 <label class="form-check-label" for="exampleRadios2">
-                <span class="input-group-text bg-danger border-danger text-light"><i class="fas fa-truck-moving"></i></span>
+                <span class="input-group-text bg-dark border-light text-light"><i class="fas fa-truck-moving"></i></span>
                 </label>
             </div>
         </div>
@@ -89,8 +89,8 @@ include __DIR__ . "/../Heading/head.php"; ?>
         <?php
         if (!empty($aTransportCompany)) : ?>
             <div class="input-group mb-3 transportCompany visually-hidden">
-                <span class="input-group-text bg-danger border-danger text-light"><i class="fas fa-truck-moving"></i></span>
-                <select name="transportCompany" id="transportCompany" class="form-select border-danger text-danger">
+                <span class="input-group-text bg-dark border-light text-light"><i class="fas fa-truck-moving"></i></span>
+                <select name="transportCompany" id="transportCompany" class="form-select border-light text-dark">
                     <?php foreach ($aTransportCompany as $tc) : ?>
                         <option value="<?= $tc->getId() ?>"><?= $tc->getCompanyName() ?></option>
                     <?php endforeach; ?>

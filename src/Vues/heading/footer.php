@@ -2,6 +2,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+
+
+
     let uri = window.location.pathname;
 
     $('.nav-item').each(function(i, element) {
@@ -15,7 +22,7 @@
     })
 
     $(".transport-type").each(function(i, element) {
-        $(element).on("click", ()=>{
+        $(element).on("click", () => {
             hideTransportType();
         })
     })

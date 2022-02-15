@@ -87,13 +87,16 @@ endif;
     <?php
     endforeach;
     ?>
+   
 </div>
 <script>
+    function getContent() {
+        return '<div>OK c"est top ça fonctionnne</div>';
+    }
     $(".delete").on("click", function(e) {
         if (confirm("Êtes vous sur de vouloir supprimer " + $(this).attr("data-name"))) {
             window.location.href = "/removecat/" + $(this).attr("data-id");
         }
     });
 </script>
-
 <?php include __DIR__ . "/../Heading/footer.php";
