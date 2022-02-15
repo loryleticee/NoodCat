@@ -25,7 +25,7 @@ final class AppController extends AbstractController
 
     public function error404(): void
     {
-        Router::redirect("404");
+        include_once(__DIR__ . "/../../404");
     }
 
     public function login()
